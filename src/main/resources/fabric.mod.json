@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "autoitemreplace",
+  "version": "1.19.4",
+  "name": "AutoItemReplace",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/Robin/AutoItemReplace"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/AutoItemReplace/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "de.confue.autoitemreplace.client.AutoItemReplaceClient"
+    ],
+    "main": [
+      "de.confue.autoitemreplace.AutoItemReplace"
+    ]
+  },
+  "mixins": [
+    "AutoItemReplace.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "0.14.19",
+    "fabric": "*",
+    "minecraft": "1.19.4"
+  }
+}
