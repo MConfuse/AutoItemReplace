@@ -1,6 +1,6 @@
-package de.confue.autoitemreplace.client;
+package de.confue.hotbaritemreplacer.client;
 
-import de.confue.autoitemreplace.client.options.FoodPriorityOption;
+import de.confue.hotbaritemreplacer.client.options.FoodPriorityOption;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public class AutoItemSwitchUtilities
+public class HotbarReplaceUtilities
 {
 	// TODO: Refactor this, make this accessible for the user to change
 	public static FoodPriorityOption foodPriorityOption = FoodPriorityOption.PLANTS;
@@ -29,13 +29,13 @@ public class AutoItemSwitchUtilities
 
 		if (oldItemStack == null)
 		{
-			System.err.println("AutoItemSwitchUtilities.getSlotWithMatchingOrEqualItemFromInventory:");
+			System.err.println("HotbarReplaceUtilities.getSlotWithMatchingOrEqualItemFromInventory:");
 			System.err.println("The item that was used up / broke is null?");
 			return -1;
 		}
 		else if (player == null)
 		{
-			System.err.println("AutoItemSwitchUtilities.getSlotWithMatchingOrEqualItemFromInventory");
+			System.err.println("HotbarReplaceUtilities.getSlotWithMatchingOrEqualItemFromInventory");
 			System.err.println("ClientPlayerEntity was null! Is this a server?");
 			return -1;
 		}
@@ -256,7 +256,7 @@ public class AutoItemSwitchUtilities
 			}
 			else
 			{
-				System.err.println("AutoItemSwitchUtilities.getInventorySlotOfSimilarItem");
+				System.err.println("HotbarReplaceUtilities.getInventorySlotOfSimilarItem");
 				System.err.println("Unknown sorting priority!");
 				return -1;
 			}

@@ -1,4 +1,4 @@
-# Auto Item Switch - A Fabric Mod
+# Hotbar Item Replacer - A Fabric Mod
 
 ### Installation
 
@@ -10,10 +10,10 @@ so [here](https://fabricmc.net/wiki/install).
 
 ### Releases
 
-The latest version of AIS is published right [here](https://github.com/MConfuse/AutoItemReplace/releases) on GitHub.
+The latest version of HIR is published right [here](https://github.com/MConfuse/HotbarItemReplacer/releases) on GitHub.
 They are suitable for use, but not guaranteed to be free of bugs and other issues.
 
-### Features:
+### Features
 
 When an item breaks/a stack is used up (e.g.: food/blocks), it will be automatically replaced with an item from your
 inventory following these rules:

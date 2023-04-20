@@ -1,29 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "autoitemreplace",
-  "version": "1.19.4",
-  "name": "AutoItemReplace",
-  "description": "",
-  "authors": [],
+  "id": "hotbar_item_replacer",
+  "version": "0.3.1",
+  "name": "Hotbar Item Replacer",
+  "description": "Swaps used/broken Items in your hotbar for new ones of the same type",
+  "authors": ["Mr_Confuse"],
   "contact": {
-    "repo": "https://github.com/Robin/AutoItemReplace"
+    "repo": "https://github.com/MConfuse/HotbarItemReplacer.git",
+    "sources": "https://github.com/MConfuse/HotbarItemReplacer",
+    "homepage": "https://github.com/MConfuse/HotbarItemReplacer",
+    "issues": "https://github.com/MConfuse/HotbarItemReplacer/issues"
   },
-  "license": "All-Rights-Reserved",
-  "icon": "assets/AutoItemReplace/icon.png",
+  "license": "GNU Lesser General Public License v3.0",
+  "icon": "assets/hotbar_item_replacer/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
-      "de.confue.autoitemreplace.client.AutoItemReplaceClient"
-    ],
-    "main": [
-      "de.confue.autoitemreplace.AutoItemReplace"
+      "de.confue.hotbaritemreplacer.client.HotbarItemReplacerClient"
     ]
   },
   "mixins": [
-    "AutoItemReplace.mixins.json"
+    {
+      "config": "HotbarItemReplacer.mixins.json",
+      "environment": "client"
+    }
   ],
   "depends": {
-    "fabricloader": "0.14.19",
+    "fabricloader": ">=0.14.19",
     "fabric": "*",
     "minecraft": "1.19.4"
   }
