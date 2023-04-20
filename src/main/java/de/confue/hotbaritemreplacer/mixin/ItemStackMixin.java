@@ -1,6 +1,6 @@
-package de.confue.autoitemreplace.mixin;
+package de.confue.hotbaritemreplacer.mixin;
 
-import de.confue.autoitemreplace.client.AutoItemSwitchUtilities;
+import de.confue.hotbaritemreplacer.client.HotbarReplaceUtilities;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.EquipmentSlot;
@@ -46,7 +46,7 @@ public class ItemStackMixin
 			return;
 
 		// Retrieves the player inventory
-		int slot = AutoItemSwitchUtilities.getSlotWithMatchingOrEqualItemFromInventory(((ItemStack) (Object) this));
+		int slot = HotbarReplaceUtilities.getSlotWithMatchingOrEqualItemFromInventory(((ItemStack) (Object) this));
 		if (slot == -1)
 			return;
 
@@ -83,7 +83,7 @@ public class ItemStackMixin
 		if (lastUsedItemStack.isItemEqual(itemStack))
 			return;
 
-		int slot = AutoItemSwitchUtilities.getSlotWithMatchingOrEqualItemFromInventory(lastUsedItemStack);
+		int slot = HotbarReplaceUtilities.getSlotWithMatchingOrEqualItemFromInventory(lastUsedItemStack);
 
 		if (slot == -1)
 			return;

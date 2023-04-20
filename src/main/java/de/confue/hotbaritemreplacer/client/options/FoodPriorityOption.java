@@ -1,6 +1,6 @@
-package de.confue.autoitemreplace.client.options;
+package de.confue.hotbaritemreplacer.client.options;
 
-public enum FoodPriorityOption implements IAutoSwitchOption
+public enum FoodPriorityOption implements IHotbarReplaceOption
 {
 	PLANTS("Plants", "Looks for plant (and fish) based food first, before selecting meat based food"),
 	MEAT("Meat", "Looks for meat first, before selecting plant based food");

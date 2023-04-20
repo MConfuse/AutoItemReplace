@@ -1,6 +1,6 @@
-package de.confue.autoitemreplace.mixin;
+package de.confue.hotbaritemreplacer.mixin;
 
-import de.confue.autoitemreplace.client.AutoItemSwitchUtilities;
+import de.confue.hotbaritemreplacer.client.HotbarReplaceUtilities;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
@@ -12,6 +12,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Objects;
 
 @Mixin({ClientPlayerInteractionManager.class})
 public class ClientPlayerInteractionMixin
@@ -58,12 +60,12 @@ public class ClientPlayerInteractionMixin
 		if (previouslyUsedItem.isItemEqual(itemStack) || itemStack.isDamageable() || hand == Hand.OFF_HAND)
 			return;
 
-		int slot = AutoItemSwitchUtilities.getSlotWithMatchingOrEqualItemFromInventory(previouslyUsedItem);
+		int slot = HotbarReplaceUtilities.getSlotWithMatchingOrEqualItemFromInventory(previouslyUsedItem);
 
 		if (slot == -1)
 			return;
 
-		MinecraftClient.getInstance().interactionManager.pickFromInventory(slot);
+		Objects.requireNonNull(MinecraftClient.getInstance().interactionManager).pickFromInventory(slot);
 	}
 
 }
