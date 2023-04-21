@@ -16,9 +16,6 @@ import java.util.Objects;
 
 public class HotbarReplaceUtilities
 {
-	// TODO: Refactor this, make this accessible for the user to change
-	public static FoodPriorityOption foodPriorityOption = FoodPriorityOption.PLANTS;
-
 	/**
 	 * @param oldItemStack The {@link ItemStack} that should be searched for
 	 * @return The slot that {@link Item} was found in, or -1 if nothing was found
@@ -94,12 +91,13 @@ public class HotbarReplaceUtilities
 			SUCK lmao */
 			if (i == inventory.selectedSlot)
 				continue;
+
 			/*
 			Compares the old Item with the item in the sameItemSlot i, if they have the same name, they are at least
 			of the
 			same type.
 			 */
-			else if (getItemIdentifier(oldItem).equals(getItemIdentifier(stack.getItem())))
+			if (getItemIdentifier(oldItem).equals(getItemIdentifier(stack.getItem())))
 			{
 				int enchantLevel;
 				// We can assume that if we get here, the item we are looking at is actually a tool too
@@ -142,8 +140,7 @@ public class HotbarReplaceUtilities
 
 		}
 
-		/* should be either -1 still or actually be a slot in the inventory that has the next best alternative to the
-		 broken/used item */
+		/* Either -1 or actually a slot in the inventory that has the next best alternative to the broken/used item */
 		return itemSlots[1];
 	}
 
@@ -163,6 +160,8 @@ public class HotbarReplaceUtilities
 		DefaultedList<ItemStack> main = inventory.main;
 		/* Array Structure:	0: enchantLevel, 1: slotIndex, 2: materialIndex, 3: foodSlotIndex */
 		final float[] itemSlots = {-1, -1, -1, -1};
+		/* Preferred food type 0: hungerLevel, 1: inventory slot, || 2: saturationLevel, 3: inventory slot */
+		final float[] prefFoodType = {-1, -1, -1, -1};
 
 		/*
 		Order of search !Excludes any crafting/armor/offhand slot!:
@@ -213,11 +212,39 @@ public class HotbarReplaceUtilities
 			}
 			else if (isFoodItem && stack.isFood())
 			{
-				// TODO: Implement the actual sorting options, currently only the sorting priority works, lol
 				/* Uses Item slots a bit different, as to guarantee that we find SOME food:
-				0: hungerLevel, 1: inventory slot || 2: saturationLevel, 3: inventory slot*/
+				0: hungerLevel, 1: inventory slot || 2: saturationLevel, 3: inventory slot */
 				FoodComponent foodComponent = Objects.requireNonNull(stack.getItem().getFoodComponent());
 				float hungerLevel = foodComponent.getHunger(), saturationLevel = foodComponent.getSaturationModifier();
+
+				if (FoodPriorityOption.getCurrentFoodPriority() == FoodPriorityOption.PLANTS && !foodComponent.isMeat())
+				{
+					if (prefFoodType[0] < hungerLevel)
+					{
+						prefFoodType[0] = hungerLevel;
+						prefFoodType[1] = i;
+					}
+
+					if (prefFoodType[2] < saturationLevel)
+					{
+						prefFoodType[2] = saturationLevel;
+						prefFoodType[3] = i;
+					}
+				}
+				else if (FoodPriorityOption.getCurrentFoodPriority() == FoodPriorityOption.MEAT && foodComponent.isMeat())
+				{
+					if (prefFoodType[0] < hungerLevel)
+					{
+						prefFoodType[0] = hungerLevel;
+						prefFoodType[1] = i;
+					}
+
+					if (prefFoodType[2] < saturationLevel)
+					{
+						prefFoodType[2] = saturationLevel;
+						prefFoodType[3] = i;
+					}
+				}
 
 				if (itemSlots[0] < hungerLevel)
 				{
@@ -239,28 +266,7 @@ public class HotbarReplaceUtilities
 
 		if (isFoodItem)
 		{
-			// Should always return the best food item available, based on the priority
-			if (foodPriorityOption.getSortingPriority() == FoodPriorityOption.HUNGER_PRIORITY)
-			{
-				if (itemSlots[1] != -1)
-					return (int) itemSlots[1];
-				else
-					return (int) itemSlots[3];
-			}
-			else if (foodPriorityOption.getSortingPriority() == FoodPriorityOption.SATURATION_PRIORITY)
-			{
-				if (itemSlots[3] != -1)
-					return (int) itemSlots[3];
-				else
-					return (int) itemSlots[1];
-			}
-			else
-			{
-				System.err.println("HotbarReplaceUtilities.getInventorySlotOfSimilarItem");
-				System.err.println("Unknown sorting priority!");
-				return -1;
-			}
-
+			return FoodPriorityOption.getBestSuitedItem(itemSlots, prefFoodType);
 		}
 		else
 		{

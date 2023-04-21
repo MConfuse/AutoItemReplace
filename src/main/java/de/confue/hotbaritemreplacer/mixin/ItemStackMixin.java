@@ -40,17 +40,14 @@ public class ItemStackMixin
 	private <T extends LivingEntity> void itemBrokenCallback(int amount, T entity, Consumer<T> breakCallback,
 															 CallbackInfo ci, Item item)
 	{
-//		brokenItem = item;
-
 		if (item == null || item instanceof ArmorItem)
 			return;
 
-		// Retrieves the player inventory
 		int slot = HotbarReplaceUtilities.getSlotWithMatchingOrEqualItemFromInventory(((ItemStack) (Object) this));
+
 		if (slot == -1)
 			return;
 
-		// Swap the found item with the currently selected hot bar slot
 		Objects.requireNonNull(MinecraftClient.getInstance().interactionManager).pickFromInventory(slot);
 	}
 
