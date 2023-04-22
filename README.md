@@ -4,29 +4,34 @@
 
 #### Manual Installation
 
-This mod requires the Fabric Loader 0.14.19 or newer. As of now only the Minecraft version 1.19.4 is supported. If you
+This mod requires the Fabric Loader 0.14.19 or newer. As of now only Minecraft version 1.19.4 is supported. If you
 haven't installed Fabric mods before, you can find a variety of community guides for doing
 so [here](https://fabricmc.net/wiki/install).
 
-### Releases
+#### Releases
 
 The latest version of HIR is published right [here](https://github.com/MConfuse/HotbarItemReplacer/releases) on GitHub.
 They are suitable for use, but not guaranteed to be free of bugs and other issues.
 
 ### Features
 
-When an item breaks/a stack is used up (e.g.: food/blocks), it will be automatically replaced with an item from your
+When an item breaks/a stack is used up (e.g.: food/blocks), it will be automatically be replaced with an item from your
 inventory following these rules:
 
 - New item has to be in your inventory, no cheating!
 - The new item will be replaced by an equivalent block, or for tools and weapons an item that has the same material. If
   there are no items of the same material, it will search for from best to worst material (Vanilla material order:
   Netherite, Diamond, Iron, Stone, Gold/Wood), taking into account the efficiency/sharpness/silk touch enchantments,
-  always equipping the best item available first.
+  always equipping the best item available.
 - If a tool is enchanted with Silk Touch, only tools with silk touch will be equipped, even if there are non-silk touch
   tools available!
-- When a stack of food is used up, it will first search for another stack of the same kind of food, if none are found,
-  it will choose the most nutritious (most hunger bars filled) food first
+- When a stack of food is used up, it will first search for another stack of the same kind of food and then, if none are
+  found, it will choose the food best suiting your preferences. You may customize the preferred food type, that being
+  either vegetables, meat or just any food item, and the way the mod finds the "best" food item of your preferred type is by
+  either looking for the most nutritious (f. ex.: cooked beef), or the most saturating (f. ex.: golden carrot) food
+  item.  
+  Important to note: If there were no items of your preferred type found, it will resort to finding _any_ food item
+  instead.
 
 #### Feature Tracker till full release
 
@@ -38,8 +43,8 @@ inventory following these rules:
 - [x] Take basic tool enchantments into account when replacing the tool: No replacing of _Silk Touch_ tools when there
   are no other silk touch tools of the same, or another, material. Give the best (i.e. the highest _Sharpness_ or _
   Efficiency_ level) tool available in your inventory at the time of breaking your previous one
-- [ ] Add a GUI/Chat commands for customizing (future) settings
-- [ ] Expand the food logic to allow for selecting whether you want to get veggies before meat, the other way around, or
+- [x] Add a GUI ~~/Chat commands~~ for customizing (future) settings
+- [x] Expand the food logic to allow for selecting whether you want to get veggies before meat, the other way around, or
   don't care and then sort those items by their nutrition, or their saturation.
 - [ ] Add an option to the food logic that allows avoiding meat or veggies completely
 - [ ] Expand the enchantment logic to make the enchantment that is looked for customizable for each (tool) item group (

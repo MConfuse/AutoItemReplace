@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "hotbar_item_replacer",
-  "version": "0.3.2",
+  "version": "0.4",
   "name": "Hotbar Item Replacer",
   "description": "Swaps used/broken Items in your hotbar for new ones of the same type",
   "authors": ["Mr_Confuse"],
