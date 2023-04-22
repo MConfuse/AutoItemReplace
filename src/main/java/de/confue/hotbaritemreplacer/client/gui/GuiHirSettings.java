@@ -1,6 +1,7 @@
 package de.confue.hotbaritemreplacer.client.gui;
 
 import de.confue.hotbaritemreplacer.client.options.FoodPriorityOption;
+import de.confue.hotbaritemreplacer.client.options.ModOptions;
 import me.x150.renderer.render.Renderer2d;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
@@ -24,7 +25,6 @@ public class GuiHirSettings extends Screen
 	@Override
 	protected void init()
 	{
-		// TODO: Figure out a good way to do stuff, this is horrible lmao
 		int buttonWidth = 140, buttonHeight = 20;
 		GridWidget gridWidget = new GridWidget();
 		gridWidget.getMainPositioner().marginX(5).marginBottom(4).alignHorizontalCenter();
@@ -84,5 +84,12 @@ public class GuiHirSettings extends Screen
 		super.removed();
 	}
 
+	@Override
+	public void close()
+	{
+		// Save when closing this Screen - in case the game crashes we don't lose any settings
+		ModOptions.saveModProperties();
 
+		super.close();
+	}
 }

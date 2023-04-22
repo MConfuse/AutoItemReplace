@@ -78,6 +78,7 @@ public enum FoodPriorityOption
 	public static void setCurrentFoodPriority(FoodPriorityOption currentFoodPriority)
 	{
 		FoodPriorityOption.currentFoodPriority = currentFoodPriority;
+		ModOptions.updatePropertyValue("food-priority", currentFoodPriority.name());
 	}
 
 	public static int getCurrentSortingPriority()
@@ -88,6 +89,7 @@ public enum FoodPriorityOption
 	public static void setCurrentSortingPriority(int currentSortingPriority)
 	{
 		FoodPriorityOption.currentSortingPriority = currentSortingPriority;
+		ModOptions.updatePropertyValue("food-sorting-priority", String.valueOf(currentSortingPriority));
 	}
 
 	@Contract(value = " -> new", pure = true)
